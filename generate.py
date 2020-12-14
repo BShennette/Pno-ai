@@ -16,7 +16,7 @@ class GeneratorError(Exception):
 def main():
     parser = argparse.ArgumentParser("Script to generate MIDI tracks by sampling from a trained model.")
 
-    parser.add_argument("--model_key", type=str, 
+    parser.add_argument("--model", type=str, 
             help="Key in saved_models/model.yaml, helps look up model arguments and path to saved checkpoint.")
     parser.add_argument("--sample_length", type=int, default=512,
             help="number of events to generate")
@@ -35,7 +35,7 @@ def main():
 
     args=parser.parse_args()
 
-    model_key = args.model_key
+    model = args.model
     '''
     try:
         model_dict = yaml.safe_load(open('saved_models/model.yaml'))[model_key]
@@ -46,7 +46,8 @@ def main():
     #model_args = model_dict["args"]
 
     #Change the value here to the model you want to run
-    model_path = 'saved_models/tf_12122020_e4'
+    model_path = 'saved_models/'+model
+
     try:
         state = torch.load(model_path)
     except RuntimeError:
@@ -102,7 +103,7 @@ def main():
             note_sequence = decoder.decode_sequence(output_sequence, 
                 verbose=True, stuck_note_duration=0.5, keep_ghosts=True)
 
-            output_dir = f"output/{model_key}/{trial_key}/"
+            output_dir = f"output/midis/{trial_key}/"
             file_name = f"sample{i+1}_{temp}"
             write_midi(note_sequence, output_dir, file_name)
     '''
