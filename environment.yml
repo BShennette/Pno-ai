@@ -1,0 +1,17 @@
+name: pno-ai
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - jsonschema=3.0.1
+  - matplotlib=3.1.0
+  - numpy=1.16.4
+  - pip=19.1.1
+  - python=3.7.3
+  - python-dateutil=2.8.0
+  - pytorch=1.1.0
+  - torchvision=0.3.0
+  - pip:
+    - pretty-midi==0.2.8
+    - pyyaml
+    - rtmidi
