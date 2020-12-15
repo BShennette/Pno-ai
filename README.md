@@ -6,17 +6,30 @@ The initial dataset comes from several years of recordings from the Internationa
 
 ### Deploying Model:
 Navigate to the unzipped folder and create the environment
+
 `conda env create -f environment.yml`
+
 `conda activate pno-ai`
+
 Move files into the `data` folder for training. Create the folder if it doesn't already exist.
+
 Train a model with
+
 `python run.py`
+
 Find a model in the saved_models directory, copy its name
+
 Generate new samples with
+
 `python generate.py --model <model name>`
+
   - Additional parameters:
+  
     `--input_live` : use a file `primer.midi` from the main directory when generating new samples
+    
     `--temps <float>` : control the temperature value of the selection for token generation
+    
     `--n_trials <int>` : control the number of samples produced
+    
     `--stuck_note_duration <float>` : control when to end notes that do note come with a NOTE_OFF
 
